@@ -22,7 +22,8 @@ public class MyPanel extends JPanel {
 	int [][]aroundmines = new int [TOTAL_COLUMNS][TOTAL_ROWS];
 	boolean [][] flag = new boolean [TOTAL_COLUMNS][TOTAL_ROWS];
 	Random numRandom =  new Random();
-	
+	int neighborcount = 0;
+	String[][] neighborNum = new  String [TOTAL_COLUMNS][TOTAL_ROWS];
 	public int totalColumns(){
 		return TOTAL_COLUMNS;
 	}
@@ -52,8 +53,46 @@ public class MyPanel extends JPanel {
 				visible[x][y] = false;
 				colorArray[x][y] = Color.white;
 				}
-				
 			}
+		for (int x=0;x<TOTAL_COLUMNS;x++){
+			for (int y=0;y<TOTAL_ROWS;y++){
+		if (mines[x][y] != 1){
+			if (x>0 && y>0 && mines[x-1][y-1]==1){//up left
+				neighborcount++;
+			}
+			if (y>0 && mines[x][y-1]==1){//up 
+				neighborcount++;
+			}
+			if ( y>0 && x<mines.length-1 && y<mines.length && mines[x+1][y-1]==1){//up right
+				neighborcount++;
+			}
+			if (x<mines.length-1 && mines[x+1][y]==1){//right
+				neighborcount++;
+			}
+			if (x<mines.length-1 && y>0 && mines[x+1][y-1]==1){//bottom right
+				neighborcount++;
+			}
+			if (y<mines.length-1 && mines[x][y+1]==1){//bottom 
+				neighborcount++;
+			}
+			if (x>0 && y<mines.length-1 && mines[x-1][y+1]==1){//bottom left
+				neighborcount++;
+			}
+			if (x>0 && mines[x-1][y]==1){//left
+				neighborcount++;
+			}
+			aroundmines[x][y] = neighborcount;
+			if (neighborcount==0){
+					neighborNum[x][y] = "";}
+				else
+					neighborNum[x][y] = String.valueOf(aroundmines[x][y]);
+			}
+			else {
+				neighborNum[x][y] = "";
+			}
+		}
+	}
+
 		}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
