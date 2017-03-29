@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class MyMouseAdapter extends MouseAdapter {
 	private Random generator = new Random();
@@ -80,6 +81,7 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on the same cell where it was pressed
 						//On the grid other than on the left column and on the top row:
 						if (myPanel.flag[myPanel.mouseDownGridX][myPanel.mouseDownGridY] == false){
+							
 							if(myPanel.mines[myPanel.mouseDownGridX][myPanel.mouseDownGridY] == 1)
 							{
 								for(int i=0; i < myPanel.totalColumns(); i++){
@@ -93,7 +95,17 @@ public class MyMouseAdapter extends MouseAdapter {
 							}
 							else{
 								if(myPanel.visible[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = true){
-								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.GRAY;}
+									myPanel.aroundmines[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = myPanel.neighborcount;
+									if (myPanel.neighborcount == 0){
+										myPanel.neighborNum[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = "";}
+										else{
+								
+									}
+									JLabel 	numbers = new JLabel(Integer.toString(myPanel.neighborcount));
+									numbers.setBounds(51 + 30*x, 41+30*y, 30, 30);
+									myPanel.add(numbers);
+									
+									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.GRAY;}
 								
 							}
 						}
