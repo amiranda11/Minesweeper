@@ -56,6 +56,7 @@ public class MyPanel extends JPanel {
 			}
 		for (int x=0;x<TOTAL_COLUMNS;x++){
 			for (int y=0;y<TOTAL_ROWS;y++){
+		
 		if (mines[x][y] != 1){
 			if (x>0 && y>0 && mines[x-1][y-1]==1){//up left
 				neighborcount++;
@@ -81,19 +82,11 @@ public class MyPanel extends JPanel {
 			if (x>0 && mines[x-1][y]==1){//left
 				neighborcount++;
 			}
-			aroundmines[x][y] = neighborcount;
-			if (neighborcount==0){
-					neighborNum[x][y] = "";}
-				else
-					neighborNum[x][y] = String.valueOf(aroundmines[x][y]);
-			}
-			else {
-				neighborNum[x][y] = "";
-			}
+				}
+					
+				}
 		}
-	}
-
-		}
+			}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
@@ -175,19 +168,4 @@ public class MyPanel extends JPanel {
 		}
 		return y;
 	}
-
-	/*public void aroundMines(){
-        for(int f=0;f<numMines;f++){
-            for(int c=0;c<numMines;c++){
-                if(mines[f][c]==9){
-                    for(int f2=f-1;f2<=f+1;f2++){
-                        for(int c2=c-1;c2<=c+1;c2++){
-                            if(f2>=0 && f2<numMines && c2>=0 && c2<numMines && mines[f2][c2]!=9)
-                                mines[f2][c2]++;
-                        }
-                      }
-                   }
-                }
-            }
-        }*/
 }
